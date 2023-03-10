@@ -1,0 +1,4 @@
+// Add field is_main_content to contents table
+
+ALTER TABLE contents
+ADD is_main_content tinyint(1) DEFAULT 0;

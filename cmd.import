@@ -1,0 +1,1 @@
+php artisan command:import_old_data TBL_MEMBER_INFO

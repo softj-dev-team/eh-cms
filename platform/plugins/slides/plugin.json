@@ -1,0 +1,9 @@
+{
+    "name": "Slides",
+    "namespace": "Botble\\Slides\\",
+    "provider": "Botble\\Slides\\Providers\\SlidesServiceProvider",
+    "author": "Thanh Tran",
+    "url": "https://thanhtran.info",
+    "version": "1.0",
+    "description": "Manager for slides"
+}

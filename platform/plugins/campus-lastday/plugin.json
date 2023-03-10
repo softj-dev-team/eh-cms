@@ -1,0 +1,9 @@
+{
+    "name": "CampusLastday",
+    "namespace": "Botble\\CampusLastday\\",
+    "provider": "Botble\\CampusLastday\\Providers\\CampusLastdayServiceProvider",
+    "author": "Sang Nguyen",
+    "url": "https://sangnguyen.info",
+    "version": "1.0",
+    "description": "The description for plugin campus_lastday"
+}

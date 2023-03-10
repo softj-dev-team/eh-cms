@@ -1,0 +1,9 @@
+{
+    "name": "Campus",
+    "namespace": "Botble\\Campus\\",
+    "provider": "Botble\\Campus\\Providers\\CampusServiceProvider",
+    "author": "Thanh Tran",
+    "url": "https://sangnguyen.info",
+    "version": "1.0",
+    "description": "The description for plugin campus"
+}

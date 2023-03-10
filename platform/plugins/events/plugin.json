@@ -1,0 +1,9 @@
+{
+    "name": "Events",
+    "namespace": "Botble\\Events\\",
+    "provider": "Botble\\Events\\Providers\\EventsServiceProvider",
+    "author": "ThanhTran",
+    "url": "https://thanhtran.info",
+    "version": "1.0",
+    "description": "The description for plugin events"
+}

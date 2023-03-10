@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'name' => '활동 로그',
+    'created' => '생성날짜',
+    'updated' => '업데이트날짜',
+    'deleted' => '삭제날짜',
+    'logged in' => '로그인날짜',
+    'logged out' => '로그오웃날짜',
+    'changed password' => '비밀번호 변경날짜',
+    'updated profile' => '프로파일 수정날짜',
+    'attached' => '첨부파일',
+    'shared' => '공유날짜',
+    'to the system' => 'to the system',
+    'of the system' => 'of the system',
+    'menu' => '메뉴',
+    'post' => '게시물',
+    'page' => '페이지',
+    'category' => '카테고리',
+    'tag' => '태그',
+    'user' => '사용자',
+    'contact' => '연럭정보',
+    'backup' => '백업',
+    'custom-field' => '커스텀 필드',
+    'widget_audit_logs' => '활동 로그',
+    'action' => '동작',
+    'user_agent' => '사용자 에이전트',
+];

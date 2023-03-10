@@ -1,0 +1,9 @@
+{
+    "name": "Introduction",
+    "namespace": "Botble\\Introduction\\",
+    "provider": "Botble\\Introduction\\Providers\\IntroductionServiceProvider",
+    "author": "Thanh Tran",
+    "url": "https://thanhtran.info",
+    "version": "1.0",
+    "description": "The description for plugin introduction"
+}

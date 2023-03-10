@@ -1,0 +1,45 @@
+.loading-section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: transparent;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center; /* aligns on vertical for column */
+    align-items: center; /* aligns on horizontal for column */
+    z-index: 99999;
+}
+
+.loading-section.hide {
+    display: none;
+}
+
+.loading-image {
+    width: 68px;
+    height: 66px;
+    -webkit-animation: spin 4s linear infinite;
+    -moz-animation: spin 4s linear infinite;
+    animation: spin 4s linear infinite;
+}
+
+@-moz-keyframes spin {
+    100% {
+        -moz-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}

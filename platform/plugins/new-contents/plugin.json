@@ -1,0 +1,9 @@
+{
+    "name": "New Contents",
+    "namespace": "Botble\\NewContents\\",
+    "provider": "Botble\\NewContents\\Providers\\NewContentsServiceProvider",
+    "author": "Thanh Tran",
+    "url": "https://sangnguyen.info",
+    "version": "1.0",
+    "description": "The description for plugin New Contents"
+}

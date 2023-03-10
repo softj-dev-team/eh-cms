@@ -1,0 +1,9 @@
+{
+    "name": "Report",
+    "namespace": "Botble\\Report\\",
+    "provider": "Botble\\Report\\Providers\\ReportServiceProvider",
+    "author": "Sang Nguyen",
+    "url": "https://sangnguyen.info",
+    "version": "1.0",
+    "description": "The description for plugin report"
+}

@@ -1,0 +1,9 @@
+{
+    "name": "Contents",
+    "namespace": "Botble\\Contents\\",
+    "provider": "Botble\\Contents\\Providers\\ContentsServiceProvider",
+    "author": "Sang Nguyen",
+    "url": "https://sangnguyen.info",
+    "version": "1.0",
+    "description": "The description for plugin contents"
+}

@@ -1,0 +1,9 @@
+{
+    "name": "Garden",
+    "namespace": "Botble\\Garden\\",
+    "provider": "Botble\\Garden\\Providers\\GardenServiceProvider",
+    "author": "Thanh Tran",
+    "url": "https://sangnguyen.info",
+    "version": "1.0",
+    "description": "The description for plugin garden"
+}

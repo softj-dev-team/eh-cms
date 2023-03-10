@@ -1,0 +1,11 @@
+.caption .wrapper-action .btn-group {
+    display: none;
+}
+
+.filter_list .filter-item .ui-select-wrapper:nth-child(2) {
+    display: none !important;
+}
+
+.page-content-wrapper .page-content .table-wrapper .table-configuration-wrap {
+    display: block;
+}

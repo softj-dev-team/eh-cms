@@ -1,0 +1,9 @@
+{
+    "name": "Life",
+    "namespace": "Botble\\Life\\",
+    "provider": "Botble\\Life\\Providers\\LifeServiceProvider",
+    "author": "Thanh tran",
+    "url": "https://thanhtran.info",
+    "version": "1.0",
+    "description": "The description for plugin life"
+}
