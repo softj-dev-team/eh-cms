@@ -1,6 +1,6 @@
 FROM --platform=linux/amd64 php:7.4.13-fpm as eh
 
-LABEL maintainer="softj"
+LABEL maintainer="Dũng Nguyễn <dung.nguyen@brickmate.vn>"
 
 # install plugins
 RUN apt-get update && apt-get install -y autoconf pkg-config libssl-dev libpng-dev libzip-dev zip apt-utils libxml2-dev gnupg apt-transport-https
@@ -73,50 +73,6 @@ RUN echo extension=apc.so > /usr/local/etc/php/conf.d/21-php-ext-apc.ini
 RUN apt-get update && apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd
-# Setup Nginx
-RUN rm /etc/nginx/sites-available/default
-COPY nginx.conf /etc/nginx/sites-available/default
-RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-RUN echo "upstream eh { server 127.0.0.1:9000; }" > /etc/nginx/conf.d/upstream.conf
-
-# Install Certbot and configure SSL
-RUN apt-get update && apt-get install -y certbot python-certbot-nginx
-RUN mkdir -p /var/www/certbot
-RUN echo "server {
-    listen 80;
-    server_name 127.0.0.1;
-
-    location / {
-        return 301 https://\$host\$request_uri;
-    }
-}
-
-server {
-    listen 443 ssl;
-    server_name 127.0.0.1;
-
-    ssl_certificate /etc/letsencrypt/live/127.0.0.1/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/127.0.0.1/privkey.pem;
-
-    location / {
-        try_files \$uri \$uri/ /index.php?\$query_string;
-    }
-
-    location ~ \.php$ {
-        fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        fastcgi_pass eh:9000;
-        fastcgi_index index.php;
-        include fastcgi_params;
-        fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
-        fastcgi_param PATH_INFO \$fastcgi_path_info;
-    }
-}
-" > /etc/nginx/sites-available/default
-
-# Renew SSL certificate every month
-RUN echo '0 0 1 * * certbot renew --nginx --post-hook "nginx -s reload"' | crontab -
-RUN echo "nginx -t && service nginx reload" >> /etc/cron.monthly/certbot-renew
-RUN chmod +x /etc/cron.monthly/certbot-renew
 
 # COPY FILE TO FOLDER
 COPY ./ /var/www/html
