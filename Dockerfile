@@ -73,9 +73,13 @@ RUN echo extension=apc.so > /usr/local/etc/php/conf.d/21-php-ext-apc.ini
 RUN apt-get update && apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd
+# Setup Nginx
+RUN rm /etc/nginx/sites-available/default
+COPY nginx.conf /etc/nginx/sites-available/default
+RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+RUN echo "upstream eh { server 127.0.0.1:9000; }" > /etc/nginx/conf.d/upstream.conf
 
-
-# INSTALL CERTBOT AND CONFIGURE SSL
+# Install Certbot and configure SSL
 RUN apt-get update && apt-get install -y certbot python-certbot-nginx
 RUN mkdir -p /var/www/certbot
 RUN echo "server {
@@ -83,7 +87,7 @@ RUN echo "server {
     server_name 127.0.0.1;
 
     location / {
-        return 301 https://$host$request_uri;
+        return 301 https://\$host\$request_uri;
     }
 }
 
@@ -95,7 +99,7 @@ server {
     ssl_certificate_key /etc/letsencrypt/live/127.0.0.1/privkey.pem;
 
     location / {
-        try_files $uri $uri/ /index.php?$query_string;
+        try_files \$uri \$uri/ /index.php?\$query_string;
     }
 
     location ~ \.php$ {
@@ -103,13 +107,13 @@ server {
         fastcgi_pass eh:9000;
         fastcgi_index index.php;
         include fastcgi_params;
-        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        fastcgi_param PATH_INFO $fastcgi_path_info;
+        fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
+        fastcgi_param PATH_INFO \$fastcgi_path_info;
     }
 }
 " > /etc/nginx/sites-available/default
 
-# RENEW SSL CERTIFICATE EVERY MONTH
+# Renew SSL certificate every month
 RUN echo '0 0 1 * * certbot renew --nginx --post-hook "nginx -s reload"' | crontab -
 RUN echo "nginx -t && service nginx reload" >> /etc/cron.monthly/certbot-renew
 RUN chmod +x /etc/cron.monthly/certbot-renew
