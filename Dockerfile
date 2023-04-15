@@ -66,7 +66,7 @@ RUN echo extension=apcu.so > /usr/local/etc/php/conf.d/20-php-ext-apcu.ini
 
 RUN rm /usr/local/etc/php/conf.d/docker-php-ext-apc.ini
 RUN echo extension=apc.so > /usr/local/etc/php/conf.d/21-php-ext-apc.ini
-
+RUN echo extension=redis.so > /usr/local/etc/php/conf.d/redis.ini
 # INSTALL PLUGIN FOR PROJECT
 
 # IMAGE
@@ -88,7 +88,7 @@ COPY docker/config/php.ini /usr/local/etc/php/php.ini
 COPY docker/config/supervisord.conf /etc/supervisor/supervisord.conf
 
 WORKDIR "/var/www/html"
-RUN composer self-update --1
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 # open port 80 443
 EXPOSE 80 443
 
