@@ -79,6 +79,10 @@ RUN apt-get update && apt-get install -y libfreetype6-dev libjpeg62-turbo-dev li
 #    rm -rf /var/lib/apt/lists/* \
 RUN apt-get install -y redis-server
 RUN apt-get install -y net-tools
+
+RUN pecl install redis \
+    && docker-php-ext-enable redis \
+
 # COPY FILE TO FOLDER
 COPY ./ /var/www/html
 
