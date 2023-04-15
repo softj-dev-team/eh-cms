@@ -196,4 +196,15 @@ return [
 
     'same_site' => null,
 
+    'redis' => [
+        'driver' => 'redis',
+        'connection' => 'default',
+        'path' => null,
+        'host' => '127.0.0.1',
+        'password' => env('REDIS_PASSWORD', null),
+        'port' => 6379,
+        'database' => 0,
+        'prefix' => 'laravel:',
+        'expire_on_close' => false,
+    ],
 ];

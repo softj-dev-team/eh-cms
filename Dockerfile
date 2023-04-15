@@ -73,7 +73,12 @@ RUN echo extension=apc.so > /usr/local/etc/php/conf.d/21-php-ext-apc.ini
 RUN apt-get update && apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd
-
+## Install Certbot and configure SSL
+#RUN apt-get update && \
+#    apt-get install -y certbot python3-certbot-nginx && \
+#    rm -rf /var/lib/apt/lists/* \
+RUN apt-get install -y redis-server
+RUN apt-get install -y net-tools
 # COPY FILE TO FOLDER
 COPY ./ /var/www/html
 
@@ -84,7 +89,6 @@ COPY docker/config/supervisord.conf /etc/supervisor/supervisord.conf
 
 WORKDIR "/var/www/html"
 RUN composer self-update --1
-
 # open port 80 443
 EXPOSE 80 443
 

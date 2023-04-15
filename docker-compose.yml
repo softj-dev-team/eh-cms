@@ -1,7 +1,26 @@
 version: "3.7"
 
 services:
-
+#  nginx:
+#    image: nginx:latest
+#    volumes:
+#      - ./docker/certbot/nginx/conf.d:/etc/nginx/conf.d:ro
+#      - ./docker/logs/nginx:/var/log/nginx:ro
+#      - ./docker/certbot/www:/var/www/html:ro
+#      - ./docker/certbot/conf:/etc/nginx/ssl:ro
+#    ports:
+#      - 80:80
+#  certbot:
+#    image: certbot/certbot
+#    container_name: eh-cms-certbot
+#    volumes:
+#      - ./docker/certbot/conf:/etc/letsencrypt:rw
+#      - ./docker/certbot/www:/var/www/html:rw
+#      - ./docker/certbot/logs:/var/log/letsencrypt:rw
+#
+#    restart: always
+##    command: certonly --manual --preferred-challenges http --email noorygo@gmail.com --agree-tos --no-eff-email --force-renewal -d dev.softj.net
+#    command : certonly --webroot --webroot-path=/var/www/html --email noorygo@gmail.com --agree-tos --no-eff-email -d dev.softj.net
   eh:
     build:
       context: ./
@@ -9,8 +28,7 @@ services:
     container_name: eh
     restart: always
     ports:
-      - 8018:80
-#      - 443:443
+      - 8080:80
     environment:
       XDEBUG_CONFIG: remote_host=host.docker.internal remote_port=9000
     networks:
